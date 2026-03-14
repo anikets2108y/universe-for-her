@@ -1,0 +1,297 @@
+/* GLOBAL RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", sans-serif;
+  height: 100vh;
+  overflow: hidden;
+  color: white;
+  background: linear-gradient(120deg, #0b1a2a, #1a0933, #02030a);
+  background-size: 600% 600%;
+  animation: skyGradient 30s ease infinite;
+}
+
+@keyframes skyGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* SKY */
+.sky {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* STARS */
+.stars-layer div {
+  position: absolute;
+  width: 3px; height: 3px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 8px white;
+  animation: twinkle 3s infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: 0.3; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1.2); }
+}
+
+/* SHOOTING STAR */
+.shooting-stars::after {
+  content: "";
+  position: absolute;
+  width: 2px; height: 120px;
+  background: linear-gradient(white, transparent);
+  top: 10%; left: 90%;
+  transform: rotate(45deg);
+  animation: shoot 6s linear infinite;
+}
+
+@keyframes shoot {
+  0% { transform: translate(0,0) rotate(45deg); opacity: 1; }
+  100% { transform: translate(-700px,700px) rotate(45deg); opacity: 0; }
+}
+
+/* FLOATING HEARTS */
+.floating-hearts::before {
+  content: "💖 💗 💞 💓 💘";
+  position: absolute;
+  bottom: -50px; left: 20%;
+  font-size: 24px;
+  animation: floatHearts 15s linear infinite;
+}
+
+@keyframes floatHearts {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-110vh); opacity: 0; }
+}
+
+/* MAIN CONTAINER */
+.main-container {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  width: 420px;
+  z-index: 10;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+}
+
+.title {
+  font-size: 28px;
+  margin-bottom: 15px;
+  color: #ff9ecb;
+  text-shadow: 0 0 10px #ff9ecb;
+}
+
+.intro-text {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  color: #eee;
+}
+
+/* BUTTONS */
+.button-area {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  background: #ff6fa3;
+  color: white;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.3s;
+  box-shadow: 0 0 10px #ff6fa3;
+}
+
+button:hover {
+  transform: scale(1.05);
+  background: #ff4f8d;
+  box-shadow: 0 0 20px #ff4f8d;
+}
+
+/* TEDDY */
+.teddy-area {
+  position: absolute;
+  bottom: 40px; left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 5;
+}
+
+.teddy {
+  font-size: 70px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.teddy:hover {
+  transform: scale(1.2) rotate(10deg);
+}
+
+.teddy-caption {
+  font-size: 14px;
+  color: #ddd;
+}
+
+/* GIFT */
+.gift-area {
+  position: absolute;
+  top: 20%; right: 8%;
+  text-align: center;
+}
+
+.gift-box {
+  font-size: 50px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.gift-box:hover {
+  transform: rotate(15deg) scale(1.2);
+}
+
+.gift-caption {
+  font-size: 14px;
+  color: #ddd;
+}
+
+/* ENVELOPE */
+.envelope-area {
+  position: absolute;
+  top: 20%; left: 8%;
+  text-align: center;
+}
+
+.envelope {
+  font-size: 50px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.envelope:hover {
+  transform: scale(1.2);
+}
+
+.envelope-caption {
+  font-size: 14px;
+  color: #ddd;
+}
+
+/* LETTER */
+.letter-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+}
+
+.letter-page {
+  background: white;
+  color: #333;
+  width: 500px;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  animation: openLetter 0.6s ease;
+}
+
+@keyframes openLetter {
+  from { transform: scale(0.5) rotateX(90deg); opacity: 0; }
+  to { transform: scale(1) rotateX(0deg); opacity: 1; }
+}
+
+.letter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.close-letter {
+  background: #ff6fa3;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.letter-content p {
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+/* POLAROIDS */
+.memory-area {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+}
+
+.polaroid {
+  position: absolute;
+  width: 130px;
+  background: white;
+  color: black;
+  padding: 8px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  transform: rotate(-5deg);
+  pointer-events: auto;
+  transition: 0.3s;
+}
+
+.polaroid:hover {
+  transform: rotate(0deg) scale(1.05);
+}
+
+.polaroid img {
+  width: 100%;
+  border-radius: 6px;
+}
+
+.polaroid p {
+  font-size: 13px;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.photo1 { top: 15%; left: 12%; }
+.photo2 { top: 60%; left: 18%; }
+.photo3 { top: 30%; right: 15%; }
+.photo4 { bottom: 15%; right: 10%; }
+
+/* CONSTELLATION */
+.constellation-layer {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
